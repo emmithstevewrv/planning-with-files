@@ -248,5 +248,5 @@ Factory Droid will reference them automatically.
 
 - [Quick Start Guide](quickstart.md)
 - [Workflow Diagram](workflow.md)
-- [Manus Principles](../skills/planning-with-files/references.md)
-- [Real Examples](../skills/planning-with-files/examples.md)
+- [Manus Principles](../.factory/skills/planning-with-files/references.md)
+- [Real Examples](../.factory/skills/planning-with-files/examples.md)

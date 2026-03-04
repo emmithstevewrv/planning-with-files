@@ -91,7 +91,7 @@ When your context fills up and you run `/clear`, this skill **automatically reco
 | Cursor | ✅ Full Support | [Cursor Setup](docs/cursor.md) | Skills + Hooks |
 | Continue | ✅ Full Support | [Continue Setup](docs/continue.md) | Skills + Prompt files |
 | Kilocode | ✅ Full Support | [Kilocode Setup](docs/kilocode.md) | Skills |
-| OpenCode | ✅ Full Support | [OpenCode Setup](docs/opencode.md) | Personal/Project Skill |
+| OpenCode | ⚠️ Partial Support | [OpenCode Setup](docs/opencode.md) | Personal/Project Skill (session catchup limited) |
 | Codex | ✅ Full Support | [Codex Setup](docs/codex.md) | Personal Skill |
 | FactoryAI Droid | ✅ Full Support | [Factory Setup](docs/factory.md) | Workspace/Personal Skill |
 | Antigravity | ✅ Full Support | [Antigravity Setup](docs/antigravity.md) | Workspace/Personal Skill |

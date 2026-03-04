@@ -19,7 +19,7 @@ Use --dry-run to preview changes without writing anything.
 Use --verify  to check for drift without making changes (exits 1 if drift found).
 """
 
-import os
+import argparse
 import shutil
 import sys
 import hashlib
@@ -226,9 +226,31 @@ def sync_file(src, dst, *, dry_run=False):
 
 # ─── Main ──────────────────────────────────────────────────────────
 
-def main():
-    dry_run = "--dry-run" in sys.argv
-    verify = "--verify" in sys.argv
+def parse_args(argv=None):
+    """Parse CLI arguments for sync behavior."""
+    parser = argparse.ArgumentParser(
+        description=(
+            "Sync shared planning-with-files assets from canonical source "
+            "to IDE-specific folders."
+        )
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Preview changes without writing files.",
+    )
+    parser.add_argument(
+        "--verify",
+        action="store_true",
+        help="Check for drift only; exit with code 1 if drift is found.",
+    )
+    return parser.parse_args(argv)
+
+
+def main(argv=None):
+    args = parse_args(argv)
+    dry_run = args.dry_run
+    verify = args.verify
 
     # Must run from repo root
     if not CANONICAL.exists():

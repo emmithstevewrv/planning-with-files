@@ -6,7 +6,7 @@ planning-with-files works with OpenCode as a personal or project skill.
 
 ## Installation
 
-See [.opencode/INSTALL.md](../.opencode/INSTALL.md) for detailed installation instructions.
+See [docs/installation.md](installation.md) for detailed installation instructions.
 
 ### Quick Install (Global)
 
