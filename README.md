@@ -42,11 +42,11 @@ See the full list of everyone who made this project better in [CONTRIBUTORS.md](
 <details>
 <summary><strong>📦 Releases & Session Recovery</strong></summary>
 
-### Current Version: v2.24.0
+### Current Version: v2.26.0
 
 | Version | Highlights |
 |---------|------------|
-| **v2.24.0** | IDE audit: Factory hooks, Copilot errorOccurred hook, Gemini hooks, bug fixes |
+| **v2.26.0** | IDE audit: Factory hooks, Copilot errorOccurred hook, Gemini hooks, bug fixes |
 | **v2.18.2** | Mastra Code hooks fix (hooks.json + docs accuracy) |
 | **v2.18.1** | Copilot garbled characters complete fix |
 | **v2.18.0** | BoxLite sandbox runtime integration |
@@ -149,7 +149,7 @@ A Claude Code plugin that transforms your workflow to use persistent markdown fi
 [![GitHub Copilot](https://img.shields.io/badge/GitHub%20Copilot-Hooks-000000)](https://docs.github.com/en/copilot/reference/hooks-configuration)
 [![Mastra Code](https://img.shields.io/badge/Mastra%20Code-Skills-00BCD4)](https://code.mastra.ai)
 [![BoxLite](https://img.shields.io/badge/BoxLite-Sandbox-6C3483)](https://boxlite.ai)
-[![Version](https://img.shields.io/badge/version-2.24.0-brightgreen)](https://github.com/OthmanAdi/planning-with-files/releases)
+[![Version](https://img.shields.io/badge/version-2.26.0-brightgreen)](https://github.com/OthmanAdi/planning-with-files/releases)
 [![SkillCheck Validated](https://img.shields.io/badge/SkillCheck-Validated-4c1)](https://getskillcheck.com)
 
 ## Quick Install
@@ -338,7 +338,7 @@ planning-with-files/
 │           ├── init-session.ps1   # Windows PowerShell
 │           └── check-complete.ps1 # Windows PowerShell
 ├── .gemini/                 # Gemini CLI skills + hooks
-│   ├── settings.json        # Hook configuration (v2.24.0)
+│   ├── settings.json        # Hook configuration (v2.26.0)
 │   ├── hooks/               # Hook scripts (SessionStart, BeforeTool, AfterTool, BeforeModel, SessionEnd)
 │   └── skills/
 │       └── planning-with-files/
@@ -353,7 +353,7 @@ planning-with-files/
 │   └── skills/
 ├── .codebuddy/              # CodeBuddy skills + hooks
 │   └── skills/
-├── .factory/                # FactoryAI Droid skills + hooks (v2.24.0)
+├── .factory/                # FactoryAI Droid skills + hooks (v2.26.0)
 │   └── skills/
 ├── .pi/                     # Pi Agent skills (npm package)
 │   └── skills/

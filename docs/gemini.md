@@ -108,7 +108,7 @@ You can also manually enable/disable skills:
 /skills reload
 ```
 
-## Hooks (v2.24.0)
+## Hooks (v2.26.0)
 
 Gemini CLI supports [hooks](https://geminicli.com/docs/hooks/) — lifecycle events that run shell scripts automatically. This skill ships with a `settings.json` that configures 4 hooks:
 
@@ -155,7 +155,7 @@ cp -r /path/to/planning-with-files/.gemini/hooks ~/.gemini/hooks
 
 ```
 .gemini/
-├── settings.json             # Hook configuration (v2.24.0)
+├── settings.json             # Hook configuration (v2.26.0)
 ├── hooks/                    # Hook scripts
 │   ├── session-start.sh      # Session recovery
 │   ├── before-tool.sh        # Plan context injection
