@@ -171,6 +171,7 @@ Thank you to everyone who reported issues, provided feedback, and helped test fi
 - [@tingles2233](https://github.com/tingles2233) - Issue #29 (Plugin update issues)
 - [@st01cs](https://github.com/st01cs) - Issue #28 (Devis fork discussion)
 - [@wqh17101](https://github.com/wqh17101) - Issue #11 testing and confirmation
+- [@sedlukha](https://github.com/sedlukha) - Issue #103 (analytics subagent feature request)
 
 And many others who have starred, forked, and shared this project!
 
@@ -192,6 +193,6 @@ If you've contributed and don't see your name here, please open an issue! We wan
 
 ---
 
-**Total Contributors:** 27+ and growing!
+**Total Contributors:** 28+ and growing!
 
-*Last updated: March 24, 2026*
+*Last updated: April 3, 2026*

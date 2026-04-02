@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.30.0] - 2026-04-03
+
+### Added
+
+- **Analytics subagent for Claude Code** (Closes #103)
+  - `skills/planning-with-files/agents/analytics.md` subagent definition with specialized system prompt for data exploration and hypothesis testing
+  - 4-phase analytics workflow: Data Discovery, Exploratory Analysis, Hypothesis Testing, Synthesis
+  - Enforces statistical rigor: hypothesis discipline, assumption validation, effect size reporting, transformation documentation
+  - Inherits planning-with-files skill via `skills` field, all hooks apply automatically
+  - `docs/analytics-subagent.md` installation and usage guide
+  - `docs/examples-analytics.md` end-to-end churn analysis walkthrough
+
+### Thanks
+
+- @sedlukha for opening #103 and defining the analytics subagent requirements
+- @mvanhorn for the analytics templates in v2.29.0 (PR #115) that this subagent builds on
+
+---
+
 ## [2.29.0] - 2026-03-24
 
 ### Added
