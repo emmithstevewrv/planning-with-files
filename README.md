@@ -104,7 +104,7 @@ These IDEs have dedicated hook configurations that automatically re-read your pl
 | Mastra Code | [Mastra Setup](docs/mastra.md) | Skills + [Hooks](https://mastra.ai/docs/mastra-code/configuration) |
 | Gemini CLI | [Gemini Setup](docs/gemini.md) | Skills + [Hooks](https://geminicli.com/docs/hooks/) |
 | Kiro | [Kiro Setup](docs/kiro.md) | [Agent Skills](https://kiro.dev/docs/skills/) |
-| Codex | [Codex Setup](docs/codex.md) | [Skills + Hooks](https://developers.openai.com/codex/skills) |
+| Codex | [Codex Setup](docs/codex.md) | [Skills + Hooks](https://developers.openai.com/codex/hooks) |
 | CodeBuddy | [CodeBuddy Setup](docs/codebuddy.md) | [Skills + Hooks](https://www.codebuddy.ai/docs/cli/skills) |
 | FactoryAI Droid | [Factory Setup](docs/factory.md) | [Skills + Hooks](https://docs.factory.ai/cli/configuration/skills) |
 | OpenCode | [OpenCode Setup](docs/opencode.md) | Skills + Custom session storage |
@@ -353,6 +353,8 @@ planning-with-files/
 │   └── skills/
 │       └── planning-with-files/
 ├── .codex/                  # Codex CLI skills + hooks
+│   ├── hooks.json           # Hook configuration
+│   ├── hooks/               # Hook scripts + Codex adapters
 │   └── skills/
 ├── .opencode/               # OpenCode skills (custom session storage)
 │   └── skills/
