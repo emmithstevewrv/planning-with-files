@@ -89,6 +89,12 @@ These amazing people have contributed code, documentation, or significant improv
   - Analytics-specific `progress.md` with Query Log replacing Test Results
   - **Impact:** Extends the planning pattern to data analytics workflows (addresses #103)
 
+- **[@ebrevdo](https://github.com/ebrevdo)** (Eugene Brevdo) - [PR #124](https://github.com/OthmanAdi/planning-with-files/pull/124)
+  - Rewrote `session-catchup.py` to support Codex rollout JSONL session format
+  - Added `CODEX_THREAD_ID` preference, subagent/tiny session filtering, and structured `patch_apply_end` event detection
+  - Updated tests and docs for the new Codex catchup behavior
+  - **Impact:** Brings session recovery parity to Codex users
+
 ### Other Contributors
 
 - **[@popey](https://github.com/popey)** - [PR #83](https://github.com/OthmanAdi/planning-with-files/pull/83)
@@ -192,6 +198,6 @@ If you've contributed and don't see your name here, please open an issue! We wan
 
 ---
 
-**Total Contributors:** 27+ and growing!
+**Total Contributors:** 28+ and growing!
 
-*Last updated: March 24, 2026*
+*Last updated: April 8, 2026*
