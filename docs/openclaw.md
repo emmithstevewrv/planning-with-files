@@ -6,7 +6,7 @@ How to use planning-with-files with [OpenClaw](https://openclaw.ai).
 
 ## What This Integration Adds
 
-- Workspace skill: `.openclaw/skills/planning-with-files/`
+- Workspace skill: `skills/planning-with-files/` in your project root
 - Full templates, scripts, and reference documentation
 - Cross-platform support (macOS, Linux, Windows)
 
@@ -17,16 +17,29 @@ OpenClaw supports three skill locations (in precedence order):
 
 ---
 
-## Installation (Workspace, recommended)
+## Installation (via ClawHub — recommended)
 
-Copy the skill to your project:
+Install directly from the ClawHub marketplace:
+
+```bash
+claw install othmanadi/planning-with-files
+```
+
+Or download the zip from [clawhub.ai/othmanadi/planning-with-files](https://clawhub.ai/othmanadi/planning-with-files) and extract to your workspace `skills/` folder.
+
+---
+
+## Installation (Workspace, manual)
+
+Copy from the GitHub repo to your project:
 
 ```bash
 # Clone the repo
 git clone https://github.com/OthmanAdi/planning-with-files.git
 
-# Copy the OpenClaw skill to your workspace
-cp -r planning-with-files/.openclaw/skills/planning-with-files skills/
+# Copy the skill files to your workspace
+mkdir -p skills/planning-with-files
+cp -r planning-with-files/clawhub-upload/* skills/planning-with-files/
 
 # Clean up
 rm -rf planning-with-files
@@ -43,8 +56,8 @@ Install to your local OpenClaw skills directory:
 git clone https://github.com/OthmanAdi/planning-with-files.git
 
 # Copy to global OpenClaw skills
-mkdir -p ~/.openclaw/skills
-cp -r planning-with-files/.openclaw/skills/planning-with-files ~/.openclaw/skills/
+mkdir -p ~/.openclaw/skills/planning-with-files
+cp -r planning-with-files/clawhub-upload/* ~/.openclaw/skills/planning-with-files/
 
 # Clean up
 rm -rf planning-with-files
