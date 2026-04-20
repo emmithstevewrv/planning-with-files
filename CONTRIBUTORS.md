@@ -98,6 +98,10 @@ These amazing people have contributed code, documentation, or significant improv
 
 ### Other Contributors
 
+- **[@gavinlinasd](https://github.com/gavinlinasd)** - [PR #135](https://github.com/OthmanAdi/planning-with-files/pull/135)
+  - Added ClawHub download history chart to README, tracking skill download growth over time
+  - **Impact:** Visitors can now see download traction at a glance
+
 - **[@Leon-Algo](https://github.com/Leon-Algo)** - [PR #119](https://github.com/OthmanAdi/planning-with-files/pull/119), [PR #120](https://github.com/OthmanAdi/planning-with-files/pull/120), [PR #122](https://github.com/OthmanAdi/planning-with-files/pull/122)
   - Made planning scripts executable in `.codex` skill install, fixing Codex installer breakage (PR #119)
   - Added official Codex hooks.json integration with full lifecycle hooks — SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop — bringing Codex to full hook parity with other IDEs (PR #120)
@@ -215,6 +219,6 @@ If you've contributed and don't see your name here, please open an issue! We wan
 
 ---
 
-**Total Contributors:** 33+ and growing!
+**Total Contributors:** 34+ and growing!
 
-*Last updated: April 17, 2026*
+*Last updated: April 20, 2026*
