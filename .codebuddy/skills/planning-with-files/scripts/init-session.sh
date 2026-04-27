@@ -1,120 +1,153 @@
 #!/bin/bash
-# Initialize planning files for a new session
-# Usage: ./init-session.sh [project-name]
+# init-session.sh
+# Initializes a planning session by creating the necessary directory structure
+# and session files for the planning-with-files skill.
+#
+# Usage: ./init-session.sh [session-name] [--force]
 
-set -e
+set -euo pipefail
 
-PROJECT_NAME="${1:-project}"
-DATE=$(date +%Y-%m-%d)
+# ─── Constants ────────────────────────────────────────────────────────────────
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SKILL_DIR="$(dirname "$SCRIPT_DIR")"
+PLANNING_ROOT="${PLANNING_ROOT:-./planning}"
+SESSION_FILE=".session"
+PLAN_FILE="PLAN.md"
+TASKS_FILE="TASKS.md"
+NOTES_FILE="NOTES.md"
+TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
-echo "Initializing planning files for: $PROJECT_NAME"
+# ─── Colours ──────────────────────────────────────────────────────────────────
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+CYAN='\033[0;36m'
+NC='\033[0m' # No Colour
 
-# Create task_plan.md if it doesn't exist
-if [ ! -f "task_plan.md" ]; then
-    cat > task_plan.md << 'EOF'
-# Task Plan: [Brief Description]
+# ─── Helpers ──────────────────────────────────────────────────────────────────
+info()    { echo -e "${CYAN}[INFO]${NC}  $*"; }
+success() { echo -e "${GREEN}[OK]${NC}    $*"; }
+warn()    { echo -e "${YELLOW}[WARN]${NC}  $*"; }
+error()   { echo -e "${RED}[ERROR]${NC} $*" >&2; }
 
-## Goal
-[One sentence describing the end state]
+usage() {
+  cat <<EOF
+Usage: $(basename "$0") [SESSION_NAME] [--force]
 
-## Current Phase
-Phase 1
+Arguments:
+  SESSION_NAME   Optional name for the session (default: session-<timestamp>)
+  --force        Overwrite an existing session directory
 
-## Phases
-
-### Phase 1: Requirements & Discovery
-- [ ] Understand user intent
-- [ ] Identify constraints
-- [ ] Document in findings.md
-- **Status:** in_progress
-
-### Phase 2: Planning & Structure
-- [ ] Define approach
-- [ ] Create project structure
-- **Status:** pending
-
-### Phase 3: Implementation
-- [ ] Execute the plan
-- [ ] Write to files before executing
-- **Status:** pending
-
-### Phase 4: Testing & Verification
-- [ ] Verify requirements met
-- [ ] Document test results
-- **Status:** pending
-
-### Phase 5: Delivery
-- [ ] Review outputs
-- [ ] Deliver to user
-- **Status:** pending
-
-## Decisions Made
-| Decision | Rationale |
-|----------|-----------|
-
-## Errors Encountered
-| Error | Resolution |
-|-------|------------|
+Environment variables:
+  PLANNING_ROOT  Root directory for planning sessions (default: ./planning)
 EOF
-    echo "Created task_plan.md"
-else
-    echo "task_plan.md already exists, skipping"
+  exit 0
+}
+
+# ─── Argument Parsing ─────────────────────────────────────────────────────────
+SESSION_NAME=""
+FORCE=false
+
+for arg in "$@"; do
+  case "$arg" in
+    --help|-h) usage ;;
+    --force|-f) FORCE=true ;;
+    *) SESSION_NAME="$arg" ;;
+  esac
+done
+
+if [[ -z "$SESSION_NAME" ]]; then
+  SESSION_NAME="session-$(date -u +"%Y%m%d-%H%M%S")"
+  warn "No session name provided. Using auto-generated name: ${SESSION_NAME}"
 fi
 
-# Create findings.md if it doesn't exist
-if [ ! -f "findings.md" ]; then
-    cat > findings.md << 'EOF'
-# Findings & Decisions
+SESSION_DIR="${PLANNING_ROOT}/${SESSION_NAME}"
 
-## Requirements
--
-
-## Research Findings
--
-
-## Technical Decisions
-| Decision | Rationale |
-|----------|-----------|
-
-## Issues Encountered
-| Issue | Resolution |
-|-------|------------|
-
-## Resources
--
-EOF
-    echo "Created findings.md"
-else
-    echo "findings.md already exists, skipping"
+# ─── Pre-flight Checks ────────────────────────────────────────────────────────
+if [[ -d "$SESSION_DIR" ]]; then
+  if [[ "$FORCE" == true ]]; then
+    warn "Session directory already exists. --force flag set; overwriting."
+    rm -rf "$SESSION_DIR"
+  else
+    error "Session directory '${SESSION_DIR}' already exists."
+    error "Use --force to overwrite, or choose a different session name."
+    exit 1
+  fi
 fi
 
-# Create progress.md if it doesn't exist
-if [ ! -f "progress.md" ]; then
-    cat > progress.md << EOF
-# Progress Log
+# ─── Create Directory Structure ───────────────────────────────────────────────
+info "Creating session directory: ${SESSION_DIR}"
+mkdir -p "${SESSION_DIR}/notes"
+mkdir -p "${SESSION_DIR}/artifacts"
+success "Directory structure created."
 
-## Session: $DATE
-
-### Current Status
-- **Phase:** 1 - Requirements & Discovery
-- **Started:** $DATE
-
-### Actions Taken
--
-
-### Test Results
-| Test | Expected | Actual | Status |
-|------|----------|--------|--------|
-
-### Errors
-| Error | Resolution |
-|-------|------------|
+# ─── Write .session metadata ──────────────────────────────────────────────────
+cat > "${SESSION_DIR}/${SESSION_FILE}" <<EOF
+# Planning Session Metadata
+session_name=${SESSION_NAME}
+created_at=${TIMESTAMP}
+status=active
+skill_version=$(grep '"version"' "${SKILL_DIR}/../../../.claude-plugin/plugin.json" 2>/dev/null | head -1 | grep -oP '[\d.]+'  || echo 'unknown')
 EOF
-    echo "Created progress.md"
-else
-    echo "progress.md already exists, skipping"
-fi
+success "Session metadata written to ${SESSION_FILE}."
 
-echo ""
-echo "Planning files initialized!"
-echo "Files: task_plan.md, findings.md, progress.md"
+# ─── Write PLAN.md ────────────────────────────────────────────────────────────
+cat > "${SESSION_DIR}/${PLAN_FILE}" <<EOF
+# Plan — ${SESSION_NAME}
+
+> Created: ${TIMESTAMP}
+
+## Objective
+
+<!-- Describe the high-level goal of this planning session. -->
+
+## Scope
+
+- **In scope:**
+- **Out of scope:**
+
+## Milestones
+
+| # | Milestone | Target Date | Status |
+|---|-----------|-------------|--------|
+| 1 |           |             | 🔲 Todo |
+
+## Decisions Log
+
+| Date | Decision | Rationale |
+|------|----------|-----------|
+EOF
+success "${PLAN_FILE} initialised."
+
+# ─── Write TASKS.md ───────────────────────────────────────────────────────────
+cat > "${SESSION_DIR}/${TASKS_FILE}" <<EOF
+# Tasks — ${SESSION_NAME}
+
+> Created: ${TIMESTAMP}
+
+## Backlog
+
+- [ ] <!-- Add tasks here -->
+
+## In Progress
+
+## Done
+EOF
+success "${TASKS_FILE} initialised."
+
+# ─── Write NOTES.md ───────────────────────────────────────────────────────────
+cat > "${SESSION_DIR}/${NOTES_FILE}" <<EOF
+# Notes — ${SESSION_NAME}
+
+> Created: ${TIMESTAMP}
+
+<!-- Capture any freeform notes, links, or context here. -->
+EOF
+success "${NOTES_FILE} initialised."
+
+# ─── Summary ──────────────────────────────────────────────────────────────────
+echo
+echo -e "${GREEN}Session '${SESSION_NAME}' is ready.${NC}"
+echo -e "  Location : ${SESSION_DIR}"
+echo -e "  Files    : ${PLAN_FILE}, ${TASKS_FILE}, ${NOTES_FILE}, ${SESSION_FILE}"
+echo
